@@ -10,6 +10,7 @@ import java.util.List;
 public interface IOrderService {
     OrderResponse saveOrder(OrderRequest orderRequest);
     OrderResponse getOrderById(Long orderId);
+    OrderResponse getOrderByOrderNumber(String orderNumber);
     OrderResponse updateOrder(Long orderId, OrderRequest orderRequest);
     OrderResponse deleteOrderById(Long orderId);
 //    void addLineItems(Long orderId, OrderLineItemsRequest orderLineItemsRequest);
@@ -18,5 +19,5 @@ public interface IOrderService {
     List<OrderResponse> getAllOrders();
     //List<OrderLineItemsResponse> getLineItems(Long orderId);
     //OrderLineItemsResponse getLineItem(Long orderId, Long lineItemId);
-    void deleteAllOrders();
+    String deleteAllOrders();
 }

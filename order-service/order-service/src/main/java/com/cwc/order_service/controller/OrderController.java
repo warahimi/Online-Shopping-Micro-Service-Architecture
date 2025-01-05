@@ -25,5 +25,28 @@ public class OrderController {
     public ResponseEntity<List<OrderResponse>> getAllOrders() {
         return ResponseEntity.status(HttpStatus.FOUND).body(orderService.getAllOrders());
     }
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrderResponse> getOrderById(@PathVariable Long orderId) {
+        return ResponseEntity.status(HttpStatus.FOUND).body(orderService.getOrderById(orderId));
+    }
+    @GetMapping("/orderNumber/{orderNumber}")
+    public ResponseEntity<OrderResponse> getOrderByOrderNumber(@PathVariable String orderNumber)
+    {
+        return  ResponseEntity.status(HttpStatus.FOUND).body(orderService.getOrderByOrderNumber(orderNumber));
+    }
+    @PutMapping("/{orderId}")
+    public ResponseEntity<OrderResponse> updateOrder(@PathVariable Long orderId, @RequestBody OrderRequest orderRequest) {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.updateOrder(orderId, orderRequest));
+    }
+    @DeleteMapping("/{orderId}")
+    public ResponseEntity<String> deleteOrder(@PathVariable Long orderId) {
+        orderService.deleteOrderById(orderId);
+        return ResponseEntity.status(HttpStatus.OK).body("Order with id " + orderId + " deleted successfully");
+    }
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<String> deleteAllOrders() {
+        orderService.deleteAllOrders();
+        return ResponseEntity.status(HttpStatus.OK).body("All orders deleted successfully");
+    }
 
 }
